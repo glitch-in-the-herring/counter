@@ -51,6 +51,19 @@ class Updater(commands.Cog):
 		database.commit()
 		await ctx.send("Successfully updated the game channel.")
 
+	@commands.command(
+		name="purge",
+		help="Purges the messages in the game channel.",
+		brief="Purges the messages in the game channel"
+	)
+	@is_admin()
+	async def purge(self, ctx, count:int):
+		guild = ctx.guild
+		database = self.bot.get_cog("Database")	
+		channel = guild.get_channel(database.get_channel(guild.id))		
+		deleted = await channel.purge(limit=argv[0])
+		await ctx.send(f'Successfully deleted {len(deleted)} messages')		
+
 
 def setup(bot):
 	bot.add_cog(Updater(bot))
