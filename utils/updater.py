@@ -45,7 +45,7 @@ class Updater(commands.Cog):
 			try:
 				count = int(message.content)
 				database.update_score(guild.id, message.author.id)
-				databae.update_last_message(guild.id, message.author.id, content)
+				database.update_last_message(guild.id, message.author.id, content)
 			except ValueError:
 				pass
 		database.commit()
