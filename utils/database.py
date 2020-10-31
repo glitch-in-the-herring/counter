@@ -39,8 +39,11 @@ class Database(commands.Cog):
 			return 0
 
 	def update_score(self, guild_id, user_id):
-		previous_score = get_score(guild_id, user_id)
-		c.execute("UPDATE scores SET score = ? WHERE guild_id = ? AND user_id = ?", [previous_score + 1, guild_id, user_id])
+		try:
+			previous_score = c.execute("SELECT score FROM scores WHERE guild_id = ? AND user_id = ?", [guild_id, user_id]).fetchone()[0]
+		except TypeError:
+			previous_score = 0
+		c.execute("INSERT OR REPLACE INTO guilds scores (guild_id, user_id, scores) VALUES (?, ?, ?)", [guild_id, user_id, previous_score + 1])
 
 
 	def clear_score(self, guild_id):
