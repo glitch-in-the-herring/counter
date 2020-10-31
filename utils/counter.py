@@ -26,6 +26,7 @@ class Counter(commands.Cog):
 						database.update_last_message(guild.id, author.id, count)
 						database.commit()
 				except ValueError:
+					print("oh it went her")
 					await message.delete()
 
 
