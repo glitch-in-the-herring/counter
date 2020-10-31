@@ -17,7 +17,9 @@ class Counter(commands.Cog):
 				try:
 					count = int(message.content)
 					previous_author, previous_count = database.get_last_message(guild.id)
+					print(previous_author)
 					if count != previous_count + 1 or author.id == previous_author:
+						print("why")
 						await message.delete
 					else:
 						database.update_score(guild.id, author.id)
