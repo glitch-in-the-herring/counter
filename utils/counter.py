@@ -1,6 +1,6 @@
 from discord.ext import commands
 
-class Counter(commnads.Cog):
+class Counter(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 		self.database = self.bot.get_cog("Database")
