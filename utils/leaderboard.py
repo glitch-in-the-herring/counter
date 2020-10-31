@@ -17,7 +17,7 @@ ranks = [
 class Leaderboard(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
-		self.database = self.bot.get_cog("Database")
+		self.database = bot.get_cog("Database")
 
 
 	# Commands
