@@ -15,7 +15,7 @@ class Counter(commands.Cog):
 		l = database.get_channel(guild.id)
 		print(l)
 		channel = guild.get_channel(database.get_channel(guild.id))
-		if message.author != client.user:
+		if message.author != self.bot.user:
 			if channel and message.channel == channel:
 				try:
 					count = int(message.content)
