@@ -12,6 +12,8 @@ class Counter(commands.Cog):
 	async def on_message(self, message):
 		guild, author = message.guild, message.author
 		print(guild.id)
+		l = self.database.get_channel(guild.id)
+		print(l)
 		channel = guild.get_channel(self.database.get_channel(guild.id))
 		if message.author != client.user:
 			if channel and message.channel == channel:
