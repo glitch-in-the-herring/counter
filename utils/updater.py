@@ -61,7 +61,7 @@ class Updater(commands.Cog):
 		guild = ctx.guild
 		database = self.bot.get_cog("Database")	
 		channel = guild.get_channel(database.get_channel(guild.id))		
-		deleted = await channel.purge(limit=argv[0])
+		deleted = await channel.purge(limit=count)
 		await ctx.send(f'Successfully deleted {len(deleted)} messages')		
 
 
