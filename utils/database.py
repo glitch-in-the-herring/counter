@@ -17,7 +17,7 @@ class Dabatase(commands.Cog):
 		c.execute("INSERT OR REPLACE INTO guilds (guild_id, channel_id, last_author_id, last_count) VALUES (?, ?, ?, ?)", [guild_id, channel_id, None, None])
 
 
-	def get_channel(self, guild_id)
+	def get_channel(self, guild_id):
 		try:
 			return c.execute("SELECT channel_id FROM guilds WHERE guild_id = ?", [guild_id]).fetchone()[0]
 		except TypeError:
@@ -28,7 +28,7 @@ class Dabatase(commands.Cog):
 		c.execute("UPDATE guilds SET last_author_id = ?, last_count = ? WHERE guild_id = ?", [last_author_id, last_count, guild_id])
 
 
-	def get_last_message(self, guild_id)
+	def get_last_message(self, guild_id):
 		return list(c.execute("SELECT last_author_id, last_count FROM guilds WHERE guild_id = ?", [guild_id]))
 
 
@@ -51,4 +51,4 @@ class Dabatase(commands.Cog):
 		return list(c.execute("SELECT user_id, score FROM scores where guild_id = ? ORDER BY score DESC, user_id DESC LIMIT 10", [guild_id]))
 
 def setup(bot):
-    bot.add_cog(Database(bot))
+	bot.add_cog(Database(bot))
