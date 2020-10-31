@@ -37,13 +37,13 @@ class Leaderboard(commands.Cog):
 			color = discord.Colour(0x4BA1C7)
 		)         
 		if len(args) == 0:
-			for y, x in ranks:
+			for y, x in enumerate(ranks):
 				embed.add_field(
 					name=rank[y],
 					value=f"{str(guild.get_member(top10[y][0]))} - {top10[y][1]} point(s)"
 				)
 		elif len(args) == 1 and 1 <= args[0] <= 10:
-			for y,x in ranks[0:args[0]]:
+			for y,x in enumerate(ranks[0:args[0]]):
 				embed.add_field(
 					name=rank[y],
 					value=f"{str(guild.get_member(top10[y][0]))} - {top10[y][1]} point(s)"
