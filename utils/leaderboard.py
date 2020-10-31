@@ -17,7 +17,6 @@ ranks = [
 class Leaderboard(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
-		self.database = bot.get_cog("Database")
 
 
 	# Commands
@@ -29,7 +28,8 @@ class Leaderboard(commands.Cog):
 	)
 	async def leaderboard(self, ctx, *args):
 		guild = ctx.guild
-		top10 = self.database.get_top10(guild.id)
+		database = self.bot.get_cog("Database")	
+		top10 = database.get_top10(guild.id)
 		embed = discord.Embed(
 			title = f"Server Leaderboard for {message.guild.name}",
 			timestamp = datetime.now(timezone.utc), 

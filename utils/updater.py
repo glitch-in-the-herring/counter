@@ -4,7 +4,6 @@ from discord.ext import commands
 class Updater(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
-		self.database = bot.get_cog("Database")
 
 
 	# Checks
@@ -26,8 +25,9 @@ class Updater(commands.Cog):
 	)
 	@is_admin()
 	async def setchannel(self, ctx, channel:discord.TextChannel):
-		self.database.update_channel(ctx.guild.id, channel.id)
-		self.database.commit()
+		database = self.bot.get_cog("Database")	
+		database.update_channel(ctx.guild.id, channel.id)
+		database.commit()
 		await ctx.send(f"Successfully set <#{channel.id}> as the counting channel for this server.")
 
 	@commands.command(
@@ -38,16 +38,17 @@ class Updater(commands.Cog):
 	@is_admin()
 	async def update(self, ctx):
 		guild = ctx.guild
-		channel = guild.get_channel(self.database.get_channel(guild.id))
-		self.database.clear_score(guild.id)
+		database = self.bot.get_cog("Database")	
+		channel = guild.get_channel(database.get_channel(guild.id))
+		database.clear_score(guild.id)
 		async for message in channel.history(limit=None, oldest_first=True):
 			try:
 				count = int(message.content)
-				self.database.update_score(guild.id, message.author.id)
-				self.databae.update_last_message(guild.id, message.author.id, content)
+				database.update_score(guild.id, message.author.id)
+				databae.update_last_message(guild.id, message.author.id, content)
 			except ValueError:
 				pass
-		self.database.commit()
+		database.commit()
 		await ctx.send("Successfully updated the game channel.")
 
 
