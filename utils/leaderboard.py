@@ -31,7 +31,7 @@ class Leaderboard(commands.Cog):
 		database = self.bot.get_cog("Database")	
 		top10 = database.get_top10(guild.id)
 		embed = discord.Embed(
-			title = f"Server Leaderboard for {message.guild.name}",
+			title = f"Server Leaderboard for {guild.name}",
 			timestamp = datetime.now(timezone.utc), 
 			color = discord.Colour(0x4BA1C7)
 		)         
