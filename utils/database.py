@@ -29,7 +29,7 @@ class Database(commands.Cog):
 
 
 	def get_last_message(self, guild_id):
-		return c.execute("SELECT last_author_id, last_count FROM guilds WHERE guild_id = ?", [guild_id])
+		return list(c.execute("SELECT last_author_id, last_count FROM guilds WHERE guild_id = ?", [guild_id]).fetchone())
 
 
 	def get_score(self, guild_id, user_id):
