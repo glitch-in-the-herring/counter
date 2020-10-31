@@ -39,13 +39,13 @@ class Leaderboard(commands.Cog):
 		if len(args) == 0:
 			for y, x in enumerate(ranks):
 				embed.add_field(
-					name=rank[y],
+					name=ranks[y],
 					value=f"{str(guild.get_member(top10[y][0]))} - {top10[y][1]} point(s)"
 				)
 		elif len(args) == 1 and 1 <= args[0] <= 10:
 			for y,x in enumerate(ranks[0:args[0]]):
 				embed.add_field(
-					name=rank[y],
+					name=ranks[y],
 					value=f"{str(guild.get_member(top10[y][0]))} - {top10[y][1]} point(s)"
 				)
 		await ctx.send(embed=embed)				
