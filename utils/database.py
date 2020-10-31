@@ -43,7 +43,7 @@ class Database(commands.Cog):
 			previous_score = c.execute("SELECT score FROM scores WHERE guild_id = ? AND user_id = ?", [guild_id, user_id]).fetchone()[0]
 		except TypeError:
 			previous_score = 0
-		c.execute("INSERT OR REPLACE INTO scores (guild_id, user_id, scores) VALUES (?, ?, ?)", [guild_id, user_id, previous_score + 1])
+		c.execute("INSERT OR REPLACE INTO scores (guild_id, user_id, score) VALUES (?, ?, ?)", [guild_id, user_id, previous_score + 1])
 
 
 	def clear_score(self, guild_id):
