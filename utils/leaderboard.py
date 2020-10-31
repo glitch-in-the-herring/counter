@@ -27,7 +27,7 @@ class Leaderboard(commands.Cog):
 		help="Retrieves the leaderboard of the curent guild. Defaults to 10 users",
 		brief="Retrieves the leaderboard"
 	)
-	async def leaderboard(self, ctx, *args):
+	async def leaderboard(self, ctx, *args:int):
 		guild = ctx.guild
 		database = self.bot.get_cog("Database")	
 		top10 = database.get_top10(guild.id)
