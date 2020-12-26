@@ -14,15 +14,6 @@ intents = discord.Intents(messages=True, guilds=True, members=True)
 bot = commands.Bot(command_prefix=prefix, intents=intents)
 bot.change_presence(activity=discord.Game(name=f"{prefix}help for info"))
 
-@bot.command
-async def load(ctx, extension):
-	bot.load_extension(f"utils.{extension}")
-
-
-@bot.command
-async def unload(ctx, extension):
-	bot.unload_extension(f"utils.{extension}")
-
 
 for filename in os.listdir("./utils"):
 	if filename.endswith(".py"):
